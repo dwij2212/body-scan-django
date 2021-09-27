@@ -39,7 +39,15 @@ $ python manage.py makemigrations
 $ python manage.py migrate
 ```
 
-4. Run the server
+4. Download the pretrained weights
+Download the pretrained weights from this [Google Drive link](https://drive.google.com/file/d/1zYC7go9EV0XaSlSBjMaiyE_4TcHc_S38/view) and place it in the root directory.
+
+Alternatively, if you have gdown installed:
+```bash
+$ gdown https://drive.google.com/uc?id=1zYC7go9EV0XaSlSBjMaiyE_4TcHc_S38
+```
+
+5. Run the server
 ```bash
 $ python manage.py runserver
 ```
