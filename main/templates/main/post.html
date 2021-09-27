@@ -1,0 +1,25 @@
+{% load static %}
+
+<form action method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1><strong>Body Scan</strong></h1>
+    
+    <div class="form-group">
+      <label for="title">Height (in CM)</label>
+      {{ form.height }}
+    </div>
+    
+    <div class="form-group file-area">
+          <label for="images">Image</label>
+            {{ form.image }}
+
+    </div>
+    
+    <div class="form-group">
+      <button type="submit">Submit</button>
+    </div>
+    
+  </form>
+  
+<link href='https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{% static '/css/style.css' %}">

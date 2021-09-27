@@ -1,0 +1,54 @@
+<!-- Page for showing results of 4 values from the database -->
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Results</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700' rel='stylesheet' type='text/css'>
+    <!-- <link rel="stylesheet" href="{% static '/css/result.css' %}">/ -->
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Results</h1>
+          <p>The following values were calculated:</p>
+          <p>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Dimension</th>
+                  <th>Measurement in CM</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                    <td>Shoulder</td>
+                    <td>{{ shoulder }}</td>
+                  </tr>
+
+                  <tr>
+                    <td>Torso</td>
+                    <td>{{ torso }}</td>
+                  </tr>
+                <tr>
+                    <td>Waist</td>
+                    <td>{{ waist }}</td>
+                  </tr>
+                  <tr>
+                    <td>Bottom length</td>
+                    <td>{{ lower }}</td>
+                  </tr>
+
+              </tbody>
+            </table>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

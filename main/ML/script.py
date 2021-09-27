@@ -39,4 +39,45 @@ def get_joints(path):
 
     cv2.imwrite(os.path.join("./media", "output.jpg"), image)
 
-    return joints[0]
+    return points
+
+#function to return distance between two points given as a list
+def distance(p1, p2):
+    return ((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)**0.5
+
+# function to get measurements by upscaling points with height
+def get_measurements(points, height):
+    leftShoulder = points[6]
+    rightShoulder = points[5]
+    leftFoot = points[16]
+    rightFoot = points[15]
+    leftElbow = points[8]
+    rightElbow = points[7]
+    leftWaist = points[12]
+    rightWaist = points[11]
+
+    #calculate pixel height by taking distance between foot and shoulder of both sides and taking average
+    pixelHeight = (distance(leftShoulder, leftFoot) + distance(leftElbow, leftShoulder)
+                    + distance(rightElbow, rightShoulder) + distance(rightShoulder, rightFoot))/2
+
+    # calculate the distance between the left and right shoulders
+    shoulderDistance = distance(leftShoulder, rightShoulder)
+    
+    # calculate waist
+    waistDistance = distance(leftWaist, rightWaist)
+
+    # calculate length of torso by taking average of distances between left elbow left waist right elbow right waist
+    torso = (distance(leftShoulder, leftWaist) + distance(rightShoulder, rightWaist)) / 2
+
+    # caluclate distance of lower body by taking similar average as torso
+    lower = (distance(leftWaist, leftFoot) + distance(rightWaist, rightFoot)) / 2
+
+    # upscale all distances by taking height as refernce and downscale using pixelHeight
+    shoulderDistance = shoulderDistance * height / pixelHeight
+    waistDistance = waistDistance * height * 3 / pixelHeight
+    torso = torso * height / pixelHeight
+    lower = lower * height * 1.1 / pixelHeight
+
+    # return all distances
+    return int(shoulderDistance), int(waistDistance), int(torso), int(lower)
+
