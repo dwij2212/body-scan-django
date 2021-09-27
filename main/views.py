@@ -5,11 +5,9 @@ from django.http import HttpResponse
 from django.shortcuts import  redirect
 from .ML.script import get_joints, get_measurements
 
-def success(request):
+def success():
     # deletes all the previous images
     Customer.objects.all().delete()
-
-    return HttpResponse('successfully uploaded')
 
 # Create your views here.
 def post_image(request):
@@ -19,6 +17,7 @@ def post_image(request):
         if form.is_valid():
             form.save()
             c = Customer.objects.all()[0]
+            success()
 
             points = get_joints(str(c.image))            
             shoulderDistance, waistDistance, torso, lower = get_measurements(points, c.height)

@@ -24,7 +24,6 @@ def get_joints(path):
 
     # load the image
     image = cv2.imread(os.path.join("./media", path))
-    print(path)
     start = time.time()
     joints = model.predict(image)
     end = time.time()
@@ -33,11 +32,6 @@ def get_joints(path):
     for i, coords in enumerate(joints[0]):
             y, x, _ = coords
             points.append([x,y])
-            image = cv2.circle(image, (x,y), radius=3, color=(0, 0, 255), thickness=-1)
-            image = cv2.putText(image, str(i), (x,y), font, 
-                        fontScale, color, thickness, cv2.LINE_AA)
-
-    cv2.imwrite(os.path.join("./media", "output.jpg"), image)
 
     return points
 
